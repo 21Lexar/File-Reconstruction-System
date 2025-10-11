@@ -1,0 +1,6 @@
+- Create a menu for our major operations
+- Convert this functional program into Object Oriented Program (not necessary thou)
+- Implement a basic versions of those operations
+- Create a header file and declare and implement the data structures and algorithms related functions in that header file.
+
+
