@@ -4,7 +4,7 @@
 OUTPUT="FRS"
 
 # Set the source files
-SOURCES="main.cpp src/dsa.cpp"
+SOURCES="main.cpp src/DataStructures.cpp"
 
 # Set the include directory
 INCLUDE_DIR="-Iinclude"
