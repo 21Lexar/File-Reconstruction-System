@@ -1,4 +1,4 @@
-- Create a menu for our major operations 
+- Create a menu for our major operations
 - Convert the existing Linked List and Stack logic into the FileManager class
 - Implement the basic versions of the delete and recover methods inside the 'FileManager' class
 - Add more data structures and algorithms and declare and implement them and their related functions in include/dsa.h and also add functionality in src/dsa.cpp
