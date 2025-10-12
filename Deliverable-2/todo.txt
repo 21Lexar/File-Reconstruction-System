@@ -1,6 +1,6 @@
 - Create a menu for our major operations
 - Convert this functional program into Object Oriented Program (not necessary thou)
 - Implement a basic versions of those operations
-- Create a header file and declare and implement the data structures and algorithms related functions in that header file.
-
-
+- Add more data structures and algorithms and declare and implement them and their related functions in include/dsa.h and also add functionality in src/dsa.cpp
+- Update build.sh whenever a file is created.
+- Fix potential errors.

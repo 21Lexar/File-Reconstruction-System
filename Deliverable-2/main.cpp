@@ -3,6 +3,8 @@
 #include <string>
 #include <filesystem>
 #include <stdexcept> 
+#include "include/dsa.h" 
+
 namespace fs = std::filesystem;
 using namespace std;
 
@@ -17,19 +19,19 @@ void append(string filePath, node*& head);
 void printList(node* head);
 
 int main() {
-    
-    //Stack object
-    RecoveryStack recoveryStack; 
-    
-    //File scanning:
-    cout << "Scanning directory for files: " << PATH << endl;
-    
-    // Iterator inside directory 
-    for (const auto & entry : fs::directory_iterator(PATH)){
-        append(entry.path().string(), activeHead); 
-        //.string() added since w/o it this was returning the path object instead of name
-    }
-    
-    printList(activeHead); 
+	
+	//Stack object
+	RecoveryStack recoveryStack; 
 
+	cout << "Scanning directory for files: " << PATH << endl;
+	// Iterator inside directory 
+	for (const auto & entry : fs::directory_iterator(PATH)){
+		append(entry.path().string(), activeHead); 
+	}
+	
+	printList(activeHead); 
+	
+	// To run the program, run build.sh and then run FRS
+    //Menu..
+	
 }
