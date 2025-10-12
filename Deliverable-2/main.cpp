@@ -16,3 +16,6 @@ int main()
     }
     printList(head);
 }
+
+
+// To run the program, run build.sh and then run FRS
