@@ -9,8 +9,8 @@ struct node{
     node* next;
 };
 
-void append(string filePath,node* &head);
+void append(string,node* &);
 
-void printList(node* head);
+void printList(node*);
 
 #endif
