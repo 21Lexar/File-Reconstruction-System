@@ -20,7 +20,7 @@ void printList(node* head);
 int main() {
 	
 	//Stack object
-	RecoveryStack recoveryStack; 
+	RecoveryStack recoveryStack;
 
 	cout << "Scanning directory for files: " << PATH << endl;
 	// Iterator inside directory 
