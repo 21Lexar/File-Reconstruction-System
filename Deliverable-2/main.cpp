@@ -11,7 +11,7 @@ using namespace std;
 //This is so we can make global changes across all 3 files. 
 node *activeHead = NULL; 
 
-const string PATH = fs::current_path() / "Temp";
+const string PATH = (fs::current_path() / "Temp").string();
 
 //Function prototypes for compiler
 void append(string filePath, node*& head);
@@ -31,6 +31,6 @@ int main() {
 	printList(activeHead); 
 	
 	// To run the program, run build.sh and then run FRS
-    //Menu..
+
 	
 }
