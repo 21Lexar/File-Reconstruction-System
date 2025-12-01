@@ -1,0 +1,17 @@
+PREV NOTES
+- Add more data structures and algorithms and declare and implement them and their related functions in include/dsa.h and also add functionality in src/dsa.cpp
+- Update build.sh whenever a file is created.
+
+TASKS:
+TREE
+1. implement the binary search tree or avl tree (the linked list rn .
+2. migrate the active file data from the temporary linked list to the new permanent tree structure. retain linked list.
+3. code tree operations -> search, insert, delete
+
+INTEGRATION
+4. finalize the filemanager class by adding tree + stack as private members.
+5. implement core methods in class:
+    a. logicaldelete -> search tree, mark file as 'deleted', push its metadata onto stack.
+    b. recoverlastfile -> pop the file from the stack and simulate the 'recovered' file output.
+6. fix file struct in datastructures.h to include a unique key (e.g. an id/timestamp) for tree sorting.
+7. make menu to perform these -> 'delete', 'recover', 'list', 'quit'
