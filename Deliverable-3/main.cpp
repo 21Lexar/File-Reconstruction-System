@@ -2,7 +2,8 @@
 #include <iostream>
 #include <string>
 #include <filesystem>
-#include <stdexcept> 
+#include <stdexcept>
+
 
 namespace fs = std::filesystem;
 using namespace std;
@@ -16,6 +17,39 @@ const string PATH = (fs::current_path() / "Temp").string();
 //Function prototypes for compiler
 void append(string filePath, node*& head);
 void printList(node* head);
+
+void clearScreen(){
+	cout << "\033[2J\033[1;1H";
+}
+
+void displayMenu(){
+	cout << "File Reconstruction System\n";
+	cout << "1. Delete\n";
+	cout << "2. Recover\n";
+	cout << "3. List\n";
+	cout << "4. Quit\n";
+}
+
+void getUserChoice(){
+	int choice;
+	cout << "Enter your choice: "; cin >> choice;
+	switch(choice){
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3: 
+			break;
+		case 4: 
+			break;
+		default:
+			clearScreen();
+			displayMenu();
+			getUserChoice();
+			break;
+			
+	}
+}
 
 int main() {
 	
