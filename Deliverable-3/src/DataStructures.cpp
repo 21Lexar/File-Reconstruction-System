@@ -22,7 +22,7 @@ void AVLTree::updateHeight(AVLNode* node) {
 }
 
 // 3. Calculates balance
-// Formula:- left height - right height
+// Formula: left height - right height
 int AVLTree::getBalanceFactor(AVLNode* node) const {
     if (!node) {
         return 0;
@@ -61,7 +61,7 @@ AVLNode* AVLTree::rotateRight(AVLNode* y) {
     AVLNode* x = y->left;
     AVLNode* T2 = x->right;
 
-    
+    //Clock wise rotation
     x->right = y;
     y->left = T2;
 
@@ -72,14 +72,23 @@ AVLNode* AVLTree::rotateRight(AVLNode* y) {
     return x; //new root
 }
 
+//recursive helper function
+AVLNode* AVLTree::insert(AVLNode* node, const File& f) {
+    //Replace
+}
+
+//public function
+void AVLTree::insert(const File& f) {
+    // Replace
+}
+
+AVLNode* AVLTree::search(int id) {
+    //Replace
+}
 
 
-
-
+// ~ Stack Implementation ~
 RecoveryStack stackData;
-
-// Implementation using Linked List instead of Stack
-
 bool RecoveryStack::isEmpty() const {
     return top == nullptr; // O(1) complexity
 }
@@ -130,4 +139,33 @@ void RecoveryStack::displayHistory() const {
         current = current->next; 
         sn++;
     }
+}
+
+// ~ File Manager Implementation ~
+void FileManager::inOrderTraversal(AVLNode* node) const {
+    if (node) {
+        inOrderTraversal(node->left);
+        cout << "    ID: " << node->data.id << ", Name: " << node->data.name << "\n";
+        inOrderTraversal(node->right);
+    }
+}
+
+void FileManager::scanDirectory(const std::string& path) {
+    //Use AVL tree for scan
+}
+
+void FileManager::printActiveList() {
+    //Call getRoot 
+}
+
+bool FileManager::logicalDelete(const string& filename) {
+    //AVL Search and Stack push
+}
+
+bool FileManager::recoverLastFile() {
+    //Use stack pop and AVL update
+}
+
+void FileManager::menu() {
+    //Menu
 }
