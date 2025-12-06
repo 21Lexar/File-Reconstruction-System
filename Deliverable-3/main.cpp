@@ -46,8 +46,6 @@ void getUserChoice(){
 			clearScreen();
 			displayMenu();
 			getUserChoice();
-			break;
-			
 	}
 }
 
