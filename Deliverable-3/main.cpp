@@ -19,7 +19,7 @@ void append(string filePath, node*& head);
 void printList(node* head);
 
 void clearScreen(){
-	cout << "\033[2J\033[1;1H";
+	cout << "\033[2J\033[1;1H"; //ANSI Sequence to clear screen
 }
 
 void displayMenu(){
