@@ -3,6 +3,34 @@
 #include "../include/DataStructures.h"
 using namespace std; 
 
+
+// ~ AVL Tree Implementation ~
+
+// - Balancing functions -
+// 1. Gets the height of a node
+int AVLTree::getHeight(AVLNode* node) const {
+    if (!node){
+        return 0;
+    } 
+    return node->height;
+}
+
+// 2. Recalculates the new height
+void AVLTree::updateHeight(AVLNode* node) {
+    // height is 1 + the max height of its two children
+    node->height = 1 + max(getHeight(node->left), getHeight(node->right));
+}
+
+// 3. Calculates balance
+// Formula:- left height - right height
+int AVLTree::getBalanceFactor(AVLNode* node) const {
+    if (!node) {
+        return 0;
+    }
+    return getHeight(node->left) - getHeight(node->right);
+}
+
+
 RecoveryStack stackData;
 
 // Implementation using Linked List instead of Stack
@@ -36,6 +64,7 @@ File RecoveryStack::pop() {
 
     return lastDeleted;
 }
+
 
 void RecoveryStack::displayHistory() const {
     if (isEmpty()) {
