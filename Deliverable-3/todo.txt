@@ -4,7 +4,7 @@ PREV NOTES
 
 TASKS:
 TREE
-1. implement the binary search tree or avl tree (the linked list rn .
+1. implement the binary search tree or avl tree (the linked list rn) .
 2. migrate the active file data from the temporary linked list to the new permanent tree structure. retain linked list.
 3. code tree operations -> search, insert, delete
 
