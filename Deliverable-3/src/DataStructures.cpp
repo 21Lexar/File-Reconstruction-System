@@ -30,6 +30,51 @@ int AVLTree::getBalanceFactor(AVLNode* node) const {
     return getHeight(node->left) - getHeight(node->right);
 }
 
+// - Rotation functions -
+//Rotations needed when BF <-1 OR >1
+
+//Left rotation for RR 
+/* 8
+    \
+     9
+      \
+       10
+*/
+AVLNode* AVLTree::rotateLeft(AVLNode* x) {
+    AVLNode* y = x->right; //y is right child of root x so 9
+    AVLNode* st = y->right; //st is left subtree of y so 10
+
+    // Anti clockwise rotation
+    y->left = x; // 8 is left child of 9
+    x->right = st;
+
+    // Update heights (must be done in this order)
+    updateHeight(x);
+    updateHeight(y);
+
+    return y; // new root
+}
+
+
+// LL or LR
+AVLNode* AVLTree::rotateRight(AVLNode* y) {
+    AVLNode* x = y->left;
+    AVLNode* T2 = x->right;
+
+    
+    x->right = y;
+    y->left = T2;
+
+    
+    updateHeight(y);
+    updateHeight(x);
+
+    return x; //new root
+}
+
+
+
+
 
 RecoveryStack stackData;
 
@@ -39,7 +84,7 @@ bool RecoveryStack::isEmpty() const {
     return top == nullptr; // O(1) complexity
 }
 
-// PUSH: Add at head of list
+// Inserts at head of list
 void RecoveryStack::push(const File& f) {
     node* newNode = new node;
     newNode->file = f;
@@ -48,7 +93,7 @@ void RecoveryStack::push(const File& f) {
     cout << " Metadata for " << f.name << " pushed to recovery stack.\n";
 }
 
-// POP: Remove from head of list
+// Removes from head of list
 File RecoveryStack::pop() {
     if (isEmpty()) {
         cerr << "Error! Recovery Stack is empty.\n";
