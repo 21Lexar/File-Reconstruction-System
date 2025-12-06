@@ -7,7 +7,6 @@
 #include <vector> 
 using namespace std;
 
-static int count = 0;
 
 struct File {
     string name;
@@ -16,7 +15,7 @@ struct File {
     string status; // "Active", "Deleted" or "Recovered" 
     
     // Default Constructor
-    File(string n, int i = ++count,string p, string s = "Active",) 
+    File(string n, int i, string p, string s = "Active") 
         : name(n), path(p), status(s) {}
 };
 
@@ -27,16 +26,16 @@ struct node{
 
 class RecoveryStack {
     private:
-        node* front;
-        node* rear;
-        
+        node* top; // for simple stack implementation
+
     public:
-        void push(const File& f);
-        File pop();
+        RecoveryStack() : top(nullptr) {} 
+        void push(const File& f); // O(1) complexity
+        File pop(); // O(1) complexity as well
         bool isEmpty() const;
         void displayHistory() const;
         //All constant to tell the compiler thse functions are purely observational 
-        //and won't change the queue entries
+        //and won't change the stack entries
 };
 
 
