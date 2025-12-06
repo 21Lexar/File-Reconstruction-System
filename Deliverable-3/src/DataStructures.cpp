@@ -3,9 +3,10 @@
 #include "../include/DataStructures.h"
 using namespace std; 
 
+RecoveryStack stackData;
+
 void RecoveryStack::push(const File& f) {
-    // vector function to push onto stack
-    stackData.push_back(f); 
+
     cout << " Metadata for " << f.name << " pushed to stack.\n";
 }
 
@@ -20,12 +21,12 @@ File RecoveryStack::pop() {
     File lastDeleted = stackData[stackData.size() - 1];
     
     // Then, actually pop the element
-    stackData.pop_back(); 
+
     return lastDeleted;
 }
 
 bool RecoveryStack::isEmpty() const {
-    return stackData.size() == 0; 
+
 }
 
 void RecoveryStack::displayHistory() const {
