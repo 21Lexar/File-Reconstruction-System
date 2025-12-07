@@ -50,11 +50,13 @@ private:
 
     // Recursive insert function -> the most exhaustively used function
     AVLNode* insert(AVLNode* node, const File& f);
+    AVLNode* deleteNode(AVLNode* node, int id);
 
 public:
     AVLTree() : root(nullptr) {} 
 
     void insert(const File& f);
+    bool deleteById(int id);
     AVLNode* search(int id); // has O (log(n)) complexity
     AVLNode* getRoot() const { return root; } // for traversing
 };

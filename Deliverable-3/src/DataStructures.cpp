@@ -42,11 +42,11 @@ int AVLTree::getBalanceFactor(AVLNode* node) const {
 */
 AVLNode* AVLTree::rotateLeft(AVLNode* x) {
     AVLNode* y = x->right; //y is right child of root x so 9
-    AVLNode* st = y->right; //st is left subtree of y so 10
+    AVLNode* T2 = y->left; //T2 is left subtree of y
 
-    // Anti clockwise rotation
-    y->left = x; // 8 is left child of 9
-    x->right = st;
+    // Perform rotation
+    y->left = x; // x becomes left child of y
+    x->right = T2; // T2 becomes right child of x
 
     // Update heights (must be done in this order)
     updateHeight(x);
@@ -141,9 +141,98 @@ AVLNode* AVLTree::search(int id) {
     return nullptr; // ID not found
 }
 
+// Helper function to find minimum node
+AVLNode* minValueNode(AVLNode* node) {
+    AVLNode* current = node;
+    while (current->left != nullptr) {
+        current = current->left;
+    }
+    return current;
+}
+
+// Recursive delete function
+AVLNode* AVLTree::deleteNode(AVLNode* node, int id) {
+    if (!node) {
+        return nullptr;
+    }
+
+    // Find and delete the node
+    if (id < node->data.id) {
+        node->left = deleteNode(node->left, id);
+    } else if (id > node->data.id) {
+        node->right = deleteNode(node->right, id);
+    } else {
+        // Node found, delete it
+        
+        // Case 1: Node with no children
+        if (!node->left && !node->right) {
+            delete node;
+            return nullptr;
+        }
+        
+        // Case 2: Node with one child
+        if (!node->left) {
+            AVLNode* temp = node->right;
+            delete node;
+            return temp;
+        }
+        if (!node->right) {
+            AVLNode* temp = node->left;
+            delete node;
+            return temp;
+        }
+        
+        // Case 3: Node with two children
+        // Get the inorder successor (smallest in right subtree)
+        AVLNode* successor = minValueNode(node->right);
+        node->data = successor->data;
+        node->right = deleteNode(node->right, successor->data.id);
+    }
+
+    // Update height and balance
+    if (!node) {
+        return nullptr;
+    }
+    
+    updateHeight(node);
+    int bf = getBalanceFactor(node);
+
+    // Left-Left case
+    if (bf > 1 && getBalanceFactor(node->left) >= 0) {
+        return rotateRight(node);
+    }
+
+    // Right-Right case
+    if (bf < -1 && getBalanceFactor(node->right) <= 0) {
+        return rotateLeft(node);
+    }
+
+    // Left-Right case
+    if (bf > 1 && getBalanceFactor(node->left) < 0) {
+        node->left = rotateLeft(node->left);
+        return rotateRight(node);
+    }
+
+    // Right-Left case
+    if (bf < -1 && getBalanceFactor(node->right) > 0) {
+        node->right = rotateRight(node->right);
+        return rotateLeft(node);
+    }
+
+    return node;
+}
+
+// Public delete function
+bool AVLTree::deleteById(int id) {
+    if (!search(id)) {
+        return false;
+    }
+    root = deleteNode(root, id);
+    return true;
+}
+
 
 // ~ Stack Implementation ~
-RecoveryStack stackData;
 bool RecoveryStack::isEmpty() const {
     return top == nullptr; // O(1) complexity
 }
@@ -241,9 +330,11 @@ bool FileManager::logicalDelete(const int& id) {
         return false;
     }
 
-    node->data.status = "Deleted";
+    // Push to recovery stack before deleting
     deleteHistory.push(node->data);
-    return true;
+    
+    // Remove from active files tree
+    return activeFiles.deleteById(id);
 }
 
 bool FileManager::recoverLastFile() {
