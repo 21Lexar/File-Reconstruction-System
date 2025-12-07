@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 #include <vector> 
+#include <filesystem>
+namespace fs = std::filesystem;
 using namespace std;
 
 
@@ -13,10 +15,7 @@ struct File {
     int id;
     string path;
     string status; // "Active", "Deleted" or "Recovered" 
-    
-    // Default Constructor
-    File(string n, int i, string p, string s = "Active") 
-        : name(n), path(p), status(s) {}
+    File(string n, int i, string p, string s = "Active") : name(n), id(i), path(p), status(s) {}
 };
 
 struct node{
@@ -90,9 +89,12 @@ public:
     // Added Core function prototypes 
     void scanDirectory(const std::string& path); 
     void printActiveList();
-    bool logicalDelete(const string& filename);
+    bool logicalDelete(const int& id);
     bool recoverLastFile();
     void menu();
+    void getUserChoice();
+    void clear();
 };
+
 #endif
 
